@@ -2,7 +2,7 @@ CXX ?= g++
 CXXFLAGS ?= -std=c++20 -O2 -g -Wall -Wextra -Wconversion -Wshadow
 CPPFLAGS = -Isrc
 
-.PHONY: all test check demo benchmark clean
+.PHONY: all test check demo benchmark stress clean
 all: build/quota_server build/core_tests build/explore
 build:
 	mkdir -p build
@@ -21,5 +21,7 @@ demo: all
 	python3 scripts/demo.py
 benchmark: all
 	python3 scripts/benchmark.py
+stress: all
+	python3 scripts/stress.py --seconds 30
 clean:
 	rm -rf build
